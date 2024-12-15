@@ -3,7 +3,7 @@ const Employee = require("../models/Employee");
 // Get all employees
 exports.getEmployees = async (req, res) => {
   try {
-    const employees = await Employee.find();
+    const employees = await Employee.find().populate("department", "name");
     res.status(200).json(employees);
   } catch (err) {
     res.status(500).json({ error: err.message });
